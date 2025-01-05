@@ -110,6 +110,7 @@ ul
     margin-left: -15px;
     margin-right: -15px;
     position: relative;
+    text-align: justify;
 }
 .btn
 {
@@ -532,6 +533,7 @@ padding-bottom: 0;
     color: var(--text-black-700);
 }
 /* service */
+
 .service .container
 {
     padding-bottom: 40px;
