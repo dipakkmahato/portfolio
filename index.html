@@ -481,50 +481,32 @@
                         <div class="contact-info-item padd-15">
                             <div class="icon"><i class="fa fa-globe-europe"></i></div>
                             <h4>Website</h4>
-                            <p>www.dpmahato.com</p>
+                            <p>www.dipaksingh.com.np</p>
                         </div>
                         <!-- ==== Contact info item end ==== -->
                     </div>
                     <h3 class="contact-title padd-15">SEND ME AN EMAIL</h3>
                     <h4 class="contact-sub-title padd-15">I AM VERY RESPONSEVE TO MESSAGES</h4>
                     <!-- ==== Contact Form ==== -->
-                    <div class="row">
-                        <div class="contact-form padd-15">
-                            <div class="row">
-                                <div class="form-item col-6 padd-15 ">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="form-item col-6 padd-15 ">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Email">
-                                    </div>
-                                </div>
+                    <div id="contact">
+                        <div class="container">
+                         
+                            <div class="contact-right">
+                              <form name="submit-to-google-sheet">
+                                <input type="text" name="Name" placeholder="Your Name" required>
+                                <input type="email" name="Email" placeholder="Your Email" required>
+                                <textarea name="Message" rows="7" placeholder="Your Message"></textarea>
+                                <button type="submit" class="btn btn2">Submit</button>
+                              </form>
+                              <span id="msg"></span>
                             </div>
-                            <div class="row">
-                                <div class="form-item col-12 padd-15 ">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Subject">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-item col-12 padd-15 ">
-                                    <div class="form-group">
-                                        <textarea name="" class="form-control" id="" placeholder="Meassage"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-item col-12 padd-15 ">
-                                    <div class="form-group">
-                                        <button type="submit" class="btn">Send Message</button>
-                                    </div>
-                                </div>
-                            </div>
+                          </div>
                         </div>
-                    </div>
+                        <div class="copyright">
+                          <p>copyright © Dipak. Made with by Public Center</p>
+                        </div>
+                      </div>
+                  
                 </div>
             </section>
             <!-- ==== Contact Section End ==== -->
@@ -557,5 +539,25 @@
     <script src="js/script.js"></script>
     <script src="js/style-switcher.js"></script>
 </body>
+
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyIEDnN-ZiqD9KMqDPxhsmHXXiIyNTEmqiCeg2Tjf_1QrjtRDIy-vogbODfFXSt7_3R/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+          msg.innerHTML = "Message sent successfully"
+          setTimeout(function(){
+            msg.innerHTML = ""
+          },5000)
+          form.reset()
+        } )
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
 
 </html>
